@@ -1,17 +1,19 @@
 
 class WeatherData {
-  final int condition;
-  final String cityName;
-  final double temperature;
+   int? condition;
+   String? cityName;
+   double? temperature;
 
-  const WeatherData({
-    required this.condition,
-    required this.cityName,
-    required this.temperature,
+   WeatherData.fromWeatherData({
+     this.condition,
+     this.cityName,
+     this.temperature,
   });
+    WeatherData();
+
 
   factory WeatherData.fromJson(Map<String, dynamic> json) {
-    return WeatherData(
+    return WeatherData.fromWeatherData(
       condition: json['weather'][0]['id'],
       cityName: json['name'],
       temperature: json['main']['temp'],

@@ -38,8 +38,18 @@ class WeatherModel {
   Future<WeatherData> getLocation() async{
     Location location = Location();
     await location.getCurrentLocation();
-    NetworkHelper networkHelper = NetworkHelper(url: "${baseUrl}data/2.5/weather?lat=${location.latitude}&lon=${location.longitude}&appid=$apiKey&units=metric");
-    WeatherData weatherData =await networkHelper.getData();
-    return weatherData;
+    if(location.latitude!=null) {
+      NetworkHelper networkHelper = NetworkHelper(
+          url: "${baseUrl}data/2.5/weather?lat=${location
+              .latitude}&lon=${location.longitude}&appid=$apiKey&units=metric");
+      WeatherData weatherData = await networkHelper.getData();
+      return weatherData;
+    }else{
+      WeatherData weatherData= WeatherData();
+      print(weatherData);
+      return weatherData;
+
+    }
+
   }
 }
